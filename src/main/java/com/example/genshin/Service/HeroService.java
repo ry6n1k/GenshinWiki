@@ -1,9 +1,9 @@
-package com.example.genshin.Hero.Service;
+package com.example.genshin.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.example.genshin.Hero.Entity.Hero;
+import com.example.genshin.Entity.Hero;
 
 public interface HeroService {
 
@@ -12,4 +12,8 @@ public interface HeroService {
     Optional<Hero> findById(Integer id);
 
     Hero saveHero(Hero hero);
+
+    Hero updateHero(Hero hero);
+
+    void deleteHero(Integer id);
 }
