@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "heroes")
-public class Hero {
+@Table(name = "artefacts")
+public class Artefact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,10 @@ public class Hero {
     @Column(name = "name")
     private String name;
 
-    public Hero() {
+    public Artefact() {
     }
 
-    public Hero(String name) {
+    public Artefact(String name) {
         this.name = name;
     }
 

@@ -19,7 +19,7 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public List<Hero> findAllHeroes() {
+    public List<Hero> findAll() {
         return heroRepository.findAll();
     }
 
@@ -29,17 +29,17 @@ public class HeroServiceImpl implements HeroService {
     }
 
     @Override
-    public Hero saveHero(Hero hero) {
+    public Hero save(Hero hero) {
         return heroRepository.save(hero);
     }
 
     @Override
-    public Hero updateHero(Hero hero){
+    public Hero update(Hero hero){
         return heroRepository.save(hero);
     }
 
     @Override
-    public void deleteHero(Integer id){
+    public void delete(Integer id){
         heroRepository.deleteById(id);
     }
 }

@@ -7,13 +7,13 @@ import com.example.genshin.Entity.Hero;
 
 public interface HeroService {
 
-    List<Hero> findAllHeroes();
+    List<Hero> findAll();
 
     Optional<Hero> findById(Integer id);
 
-    Hero saveHero(Hero hero);
+    Hero save(Hero hero);
 
-    Hero updateHero(Hero hero);
+    Hero update(Hero hero);
 
-    void deleteHero(Integer id);
+    void delete(Integer id);
 }

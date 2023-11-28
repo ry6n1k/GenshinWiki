@@ -5,11 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "heroes")
-public class Hero {
+public class WorldBoss {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +16,10 @@ public class Hero {
     @Column(name = "name")
     private String name;
 
-    public Hero() {
+    public WorldBoss() {
     }
 
-    public Hero(String name) {
+    public WorldBoss(String name) {
         this.name = name;
     }
 

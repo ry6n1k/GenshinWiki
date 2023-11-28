@@ -27,27 +27,27 @@ public class HeroController {
 
     @GetMapping
     public List<Hero> findAll() {
-        return heroService.findAllHeroes();
+        return heroService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Hero> findHeroById(@PathVariable("id") Integer id) {
+    public Optional<Hero> findById(@PathVariable("id") Integer id) {
         return heroService.findById(id);
     }
 
     // specify the type of data
     @PostMapping(consumes = { "application/json" })
     public Hero saveHero(@RequestBody Hero hero) {
-        return heroService.saveHero(hero);
+        return heroService.save(hero);
     }
 
     @PutMapping
-    public Hero updateHero(@RequestBody Hero hero) {
-        return heroService.updateHero(hero);
+    public Hero update(@RequestBody Hero hero) {
+        return heroService.update(hero);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteHero(@PathVariable("id") Integer id) {
-        heroService.deleteHero(id);
+    public void delete(@PathVariable("id") Integer id) {
+        heroService.delete(id);
     }
 }

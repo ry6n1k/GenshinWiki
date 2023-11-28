@@ -8,9 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "heroes")
-public class Hero {
-
+@Table(name = "worldBossItem")
+public class WorldBossItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,10 +17,10 @@ public class Hero {
     @Column(name = "name")
     private String name;
 
-    public Hero() {
+    public WorldBossItem() {
     }
 
-    public Hero(String name) {
+    public WorldBossItem(String name) {
         this.name = name;
     }
 
@@ -40,5 +39,4 @@ public class Hero {
     public void setName(String name) {
         this.name = name;
     }
-
 }
