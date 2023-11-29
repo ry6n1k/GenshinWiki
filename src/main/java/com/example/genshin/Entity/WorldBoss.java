@@ -1,10 +1,15 @@
 package com.example.genshin.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class WorldBoss {
@@ -22,6 +27,10 @@ public class WorldBoss {
     public WorldBoss(String name) {
         this.name = name;
     }
+
+    @OneToMany
+    @JoinColumn(name = "BOSS_ID")
+    List<WorldBossItem> items = new ArrayList<>();
 
     public Integer getId() {
         return id;
