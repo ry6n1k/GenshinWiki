@@ -1,10 +1,13 @@
 package com.example.genshin.Entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Hero {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToMany
+    private List<Artefact> artefacts;
 
     public Hero() {
     }
