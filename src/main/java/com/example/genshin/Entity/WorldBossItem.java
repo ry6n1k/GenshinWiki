@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "worldBossItem")
+@Table(name = "world_boss_item")
 public class WorldBossItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
