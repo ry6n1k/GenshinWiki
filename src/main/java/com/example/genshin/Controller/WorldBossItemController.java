@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.genshin.Entity.Element;
-import com.example.genshin.Service.ElementService;
+import com.example.genshin.Entity.WorldBossItem;
+import com.example.genshin.Service.WorldBossItemService;
 
 @RestController
-@RequestMapping("/element")
-public class ElementController {
-    private final ElementService service;
+@RequestMapping("/item")
+public class WorldBossItemController {
+    private final WorldBossItemService service;
 
-    public ElementController(ElementService service) {
+    public WorldBossItemController(WorldBossItemService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Element> findAll() {
+    public List<WorldBossItem> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Element> findById(@PathVariable("id") Integer id) {
+    public Optional<WorldBossItem> findById(@PathVariable("id") Integer id) {
         return service.findById(id);
     }
 
     // specify the type of data
     @PostMapping(consumes = { "application/json" })
-    public Element save(@RequestBody Element element) {
-        return service.save(element);
+    public WorldBossItem save(@RequestBody WorldBossItem item) {
+        return service.save(item);
     }
 
     @PutMapping
-    public Element update(@RequestBody Element element) {
-        return service.update(element);
+    public WorldBossItem update(@RequestBody WorldBossItem item) {
+        return service.update(item);
     }
 
     @DeleteMapping("/{id}")

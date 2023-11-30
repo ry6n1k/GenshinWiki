@@ -19,35 +19,35 @@ import com.example.genshin.Service.HeroService;
 @RequestMapping("/hero")
 public class HeroController {
 
-    private final HeroService heroService;
+    private final HeroService service;
 
-    public HeroController(HeroService heroService) {
-        this.heroService = heroService;
+    public HeroController(HeroService service) {
+        this.service = service;
     }
 
     @GetMapping
     public List<Hero> findAll() {
-        return heroService.findAll();
+        return service.findAll();
     }
 
     @GetMapping("/{id}")
     public Optional<Hero> findById(@PathVariable("id") Integer id) {
-        return heroService.findById(id);
+        return service.findById(id);
     }
 
     // specify the type of data
     @PostMapping(consumes = { "application/json" })
-    public Hero saveHero(@RequestBody Hero hero) {
-        return heroService.save(hero);
+    public Hero save(@RequestBody Hero hero) {
+        return service.save(hero);
     }
 
     @PutMapping
     public Hero update(@RequestBody Hero hero) {
-        return heroService.update(hero);
+        return service.update(hero);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer id) {
-        heroService.delete(id);
+        service.delete(id);
     }
 }
