@@ -1,15 +1,20 @@
 package com.example.genshin.Entity;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -24,6 +29,17 @@ public class Hero {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "rarity")
+    private int rarity;
+
+    @Column(name = "type_weapon")
+    @Enumerated(EnumType.STRING)
+    private TypeWeapon typeWeapon;
+
+    @Column(name = "element")
+    @Enumerated(EnumType.STRING)
+    private Element element;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "talent_id", nullable = false)
     @JsonIgnoreProperties("heroes")
@@ -34,25 +50,15 @@ public class Hero {
     @JsonIgnoreProperties("heroes")
     private WorldBossItem item;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "element_id", nullable = false)
+    @ManyToMany()
+    @JoinTable(name = "hero_artefact", joinColumns = @JoinColumn(name = "hero_id"), inverseJoinColumns = @JoinColumn(name = "artefact_id"))
     @JsonIgnoreProperties("heroes")
-    private Element element;
+    private List<Artefact> artefacts;
 
-    // @ManyToMany()
-    // @JoinTable(name = "hero_artefact", joinColumns = @JoinColumn(name =
-    // "hero_id"), inverseJoinColumns = @JoinColumn(name = "artefact_id"))
-    // private Set<Artefact> artefacts = new HashSet<>();
-
-    // public void addComment(Artefact artefact) {
-    // artefacts.add(artefact);
-    // artefact.setHero(this);
-    // }
-
-    // public void removeComment(Artefact artefact) {
-    // artefacts.remove(artefact);
-    // artefact.setHero(null);
-    // }
+    @ManyToMany()
+    @JoinTable(name = "hero_weapon", joinColumns = @JoinColumn(name = "hero_id"), inverseJoinColumns = @JoinColumn(name = "weapon_id"))
+    @JsonIgnoreProperties("heroes")
+    private List<Weapon> weapons; 
 
     public Hero() {
     }
@@ -75,6 +81,18 @@ public class Hero {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(int rarity) {
+        this.rarity = rarity;
+    }
+
+    public TypeWeapon getTypeWeapon() {
+        return typeWeapon;
     }
 
     public WorldBossItem getItem() {
@@ -101,12 +119,20 @@ public class Hero {
         this.element = element;
     }
 
-    // public Set<Artefact> getArtefact() {
-    // return artefacts;
-    // }
+    public List<Artefact> getArtefacts() {
+        return artefacts;
+    }
 
-    // public void setArtefact(Artefact artefact) {
-    // this.artefacts = artefacts;
-    // }
+    public void setArtefacts(List<Artefact> artefacts) {
+        this.artefacts = artefacts;
+    }
+
+    public List<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    public void setWeapons(List<Weapon> weapons) {
+        this.weapons = weapons;
+    }
 
 }

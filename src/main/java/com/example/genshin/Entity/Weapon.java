@@ -1,22 +1,21 @@
 package com.example.genshin.Entity;
 
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "talents")
-public class Talent {
+@Table(name = "weapon")
+public class Weapon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,14 +24,17 @@ public class Talent {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "talent", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("talent")
+    @Enumerated((EnumType.STRING))
+    private TypeWeapon typeWeapon;
+
+    @ManyToMany(mappedBy = "weapons")
+    @JsonIgnoreProperties("weapons")
     private List<Hero> heroes;
 
-    public Talent() {
+    public Weapon() {
     }
 
-    public Talent(String name) {
+    public Weapon(String name) {
         this.name = name;
     }
 
@@ -50,6 +52,14 @@ public class Talent {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public TypeWeapon getTypeWeapon() {
+        return typeWeapon;
+    }
+
+    public void setTypeWeapon(TypeWeapon typeWeapon) {
+        this.typeWeapon = typeWeapon;
     }
 
     public List<Hero> getHeroes() {
